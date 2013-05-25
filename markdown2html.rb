@@ -3,8 +3,8 @@ require 'redcarpet'
 require 'pygments'
 
 # css files
-code_css = "https://raw.github.com/iguto/markdown2html/master/code.css"
-base_css = "https://raw.github.com/iguto/markdown2html/master/github.css"
+$code_css = "https://raw.github.com/iguto/markdown2html/master/code.css"
+$base_css = "https://raw.github.com/iguto/markdown2html/master/github.css"
 
 # from https://github.com/vmg/redcarpet
 class HTMLwithPygments < Redcarpet::Render::HTML
@@ -14,8 +14,8 @@ class HTMLwithPygments < Redcarpet::Render::HTML
 	
 	def doc_header()
 		header = "<html><header>
-<link rel='stylesheet' href=#{code_css} />
-<link rel='stylesheet' href=#{base_css} />
+<link rel='stylesheet' href=#{$code_css} />
+<link rel='stylesheet' href=#{$base_css} />
 </header><body>"
 
 	end
