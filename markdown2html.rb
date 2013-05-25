@@ -14,8 +14,8 @@ class HTMLwithPygments < Redcarpet::Render::HTML
 	
 	def doc_header()
 		header = "<html><header>
-<link rel='stylesheet' href=#{$code_css} />
-<link rel='stylesheet' href=#{$base_css} />
+<link rel='stylesheet' type='text/css' href=#{$code_css} />
+<link rel='stylesheet' type='text/css' href=#{$base_css} />
 </header><body>"
 
 	end
