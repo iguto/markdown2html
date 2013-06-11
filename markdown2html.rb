@@ -3,10 +3,12 @@ require 'redcarpet'
 require 'pygments'
 
 # css files
-$code_css = "https://raw.github.com/iguto/markdown2html/master/code.css"
-$base_css = "https://raw.github.com/iguto/markdown2html/master/github.css"
+$base_css = "http://clc-iguto.com/~masahiro/css/old_github.css"
+#$base_css = "http://clc-iguto.com/~masahiro/css/github.css"
+$code_css = "http://clc-iguto.com/~masahiro/css/code.css"
 
 # from https://github.com/vmg/redcarpet
+#class HTMLwithPygments < Redcarpet::Render::HTML
 class HTMLwithPygments < Redcarpet::Render::HTML
   def block_code(code, language)
     Pygments.highlight(code, :lexer => language)
@@ -34,13 +36,17 @@ parse_extensions = {
 }
 
 render_extensinos = {
-  :hard_wrap => true
+  :hard_wrap => true,
+	:with_toc_data => true
 }
 
 #STDOUT.write Redcarpet::Markdown.new(HTMLwithPygments.new(render_extensinos),
 
-render = HTMLwithPygments.new(render_extensinos)
+render = HTMLwithPygments.new()#render_extensinos)
 #puts Redcarpet::Markdown.new(render, parse_extensions).render(ARGF.read)
+html_toc = Redcarpet::Markdown.new(Redcarpet::Render::HTML_TOC)
 markdown = Redcarpet::Markdown.new(render, parse_extensions)
-puts markdown.render(ARGF.read)
+md_file = ARGF.read.delete('[TOC]')
+puts html_toc.render(md_file)
+puts markdown.render(md_file)
 #puts Redcarpet::Markdown.new(render, parse_extensions).render(ARGF.read)
